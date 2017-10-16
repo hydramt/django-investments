@@ -33,4 +33,4 @@ def register(request):
          return render(request, 'investments/register.html', context)
 
 def haqqalla(request):
-    return HttpResponse("i5Tm2G07AvDEsJtR-of--3w4u3BZ0kAngxjoJZn1v5M.lNz1sYo3x1omhznw-_PhxyyNfRQTiBq7nW-o2gf6JY0")
+    return HttpResponse("6rbNJVhD2srz_V6q9y2tvD75s-ImDIRvZWyvCs5D3_M.5zuhqYTufukHSc-gAZ6bdu2U1GfCC9r8LHiGruDTlco")
