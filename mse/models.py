@@ -6,6 +6,7 @@ class trades(models.Model):
       created = models.DateTimeField(auto_now_add=True)
       modified = models.DateTimeField(auto_now=True)
       date = models.DateTimeField()
+      date_only = models.DateField()
       ticker = models.CharField(max_length=6)
       volume = models.IntegerField()
       value = models.FloatField()
