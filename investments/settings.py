@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+bc!0h44msg(=bv$4gxhex6zmj(^5rny!p)r8k(v0h+xlt5o8q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,19 +89,26 @@ WSGI_APPLICATION = 'investments.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    'investments':{
+    'default':{
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'portfolios',
         'USER': 'postgres',
         'OPTIONS': {
 			'options': '-c search_path=investments'
 	},
         'PASSWORD': 'password',
-        'HOST': 'db00',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'investments':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'portfolios',
+        'USER': 'postgres',
+        'OPTIONS': {
+			'options': '-c search_path=investments'
+	},
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -146,7 +153,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
