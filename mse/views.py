@@ -20,7 +20,8 @@ def chart_view(request, requested_ticker):
     tickerdata = DataPool(
             series=
               [{'options': {
-                   'source': trades.objects.order_by('date').filter(ticker=requested_ticker)},
+#                   'source': trades.objects.order_by('date').filter(ticker=requested_ticker)},
+                   'source': trades.objects.filter(ticker='MPC').values('date','ticker','close').order_by('date_only', '-date').distinct('date_only')},
                 'terms': [
                    'date',
                    'change',
