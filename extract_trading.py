@@ -73,11 +73,13 @@ dbdo = dbconnection.cursor()
 #dbdo.execute('CREATE TABLE IF NOT EXISTS mse_trades (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, DATE datetime NOT NULL, TICKER varchar(6) NOT NULL, VOLUME integer NOT NULL, VALUE real NOT NULL, TRADES integer NOT NULL, HIGH real NOT NULL, LOW real NOT NULL, OPEN real NOT NULL, CLOSE real NOT NULL, CHANGE real NOT NULL)')
 temp = []
 curr_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+curr_date=datetime.utcnow().strftime("%Y-%m-%d")
 y=0
 execute = list()
 execute.append(curr_time)
 execute.append(curr_time)
 execute.append(curr_time)
+execute.append(curr_date)
 if behead(mse_equities) is not None:
 	for x in behead(mse_equities).split("#"):
 		if x != None:
@@ -85,7 +87,8 @@ if behead(mse_equities) is not None:
 			if (y == 9):
 				if update:
 					execute.append(x.strip())
-					dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
+					print execute
+					dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, date_only, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
 					print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)\n" % ','.join(execute)
 			#else:
 				#print "NOT UPDATING. Update: %s" % update
@@ -94,6 +97,7 @@ if behead(mse_equities) is not None:
 				execute.append(curr_time)
 				execute.append(curr_time)
 				execute.append(curr_time)
+				execute.append(curr_date)
 	
 			else:
 				if (y == 1):
