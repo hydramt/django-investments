@@ -88,7 +88,7 @@ if behead(mse_equities) is not None:
 				if update:
 					execute.append(x.strip())
 					dbdo.execute("INSERT INTO investments.mse_trades(date, created, modified, date_only, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", execute)
-					print "INSERT INTO investments.mse_trades(date, created, modified, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)\n" % ','.join(execute)
+					print "INSERT INTO investments.mse_trades(date, created, modified, date_created, ticker, volume, value, trades, high, low, open, close, change) VALUES (%s)\n" % ','.join(execute)
 			#else:
 				#print "NOT UPDATING. Update: %s" % update
 				y=0
